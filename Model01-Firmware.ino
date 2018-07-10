@@ -289,7 +289,7 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
                     LSHIFT(Key_0),          K_Equals,       LSHIFT(K_Backslash), LSHIFT(K_4),   LSHIFT(K_5),        LSHIFT(K_Equals),
    ___,             K_6,                    K_7,            K_8,                 K_9,           K_0,                LSHIFT(K_3),
 
-   ___, ___, ___, Key_Enter,
+   ___, ___, ___, ___,      
    ___)
 };
 // *INDENT-ON*
