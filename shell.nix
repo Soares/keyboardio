@@ -15,8 +15,8 @@ let
 
   kaleidoscope-digitalrain = fetchgit {
     url    = https://github.com/tremby/Kaleidoscope-LEDEffect-DigitalRain.git;
-    rev    = "6f16e81";
-    sha256 = "0amcj216z2qghfdbh7xbqazx21x7q27gshapmgcp726slssx6img";
+    rev    = "64ec506";
+    sha256 = "0bd2576m25ijrcs3xh9vid36bw5w9cpdqxdypsz1mwbazfff3arr";
   };
 
   keyboardioEnv = stdenv.mkDerivation {
@@ -37,7 +37,7 @@ let
     '';
   };
 in mkShell {
-  name           = "keyboadioEnv";
+  name           = "keyboadioShell";
   buildInputs    = [ gnumake arduino ];
   ARDUINO_PATH   = "${arduino}/share/arduino";
   SKETCHBOOK_DIR = "${keyboardioEnv}";
