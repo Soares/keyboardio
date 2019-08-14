@@ -1,4 +1,4 @@
-# Keyboardio Model 01 Firmware
+# Keyboardio Model 01 Firmware 
 
 _The default firmware for the Keyboardio Model 01_
 
@@ -8,7 +8,36 @@ _The default firmware for the Keyboardio Model 01_
 
   * If you have questions, [The community forums are happy to help!](https://community.keyboard.io/)</h3>
 
-# Download and install
+# Nix instructions
+
+When running the `nix` package manager simply run `nix-shell --run "make flash"` to flash the firmware. 
+
+Kaleidoscope and all 3rd party plugins pinned to a commit, ensuring that everything builds consistently even on new machines.
+
+To update Kaleidoscope and 3rd party plugins, just update the `rev` in `shell.nix` to the commit you'd like to update to. To add new 3rd party plugins, add a new `fetchgit` for the plugin at the top of the `let` expression in `shell.nix` and simlink it to the appropriate location in the `installPhase` of the `keyboardioEnv` derivation.
+
+On NixOS systems you'll also need to add the following to your `configuration.nix`:
+```
+
+# Keyboardio fix
+# See: https://github.com/keyboardio/Kaleidoscope/wiki/Install-Arduino-support-on-Linux
+services.udev.extraRules = ''
+  SUBSYSTEMS=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="2300", SYMLINK+="model01", ENV{ID_MM_DEVICE_IGNORE}:="1", ENV{ID_MM_CANDIDATE}:="0"
+  SUBSYSTEMS=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="2301", SYMLINK+="model01", ENV{ID_MM_DEVICE_IGNORE}:="1", ENV{ID_MM_CANDIDATE}:="0"
+'';
+```
+
+You'll also need to ensure you user is part of the `dialout` group, e.g.:
+```
+
+users.users.[user]= {
+  description  = "[Name]";
+  extraGroups  = [ "wheel" "networkmanager" "dialout" ];
+  isNormalUser = true;
+};
+```
+
+# Download and install (original instructions)
 
 ## Set up the Arduino IDE
 
@@ -29,7 +58,7 @@ If you install Arduino into some place that's /not/ `/usr/local/arduino`, you'll
 
 ### MacOS
 ```sh
-mkdir -p $HOME/Arduino
+mkdir -p $HOME/Documents/Arduino
 cd $HOME/Arduino
 ```
 
