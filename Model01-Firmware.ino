@@ -12,21 +12,22 @@
  *  Macros must come before key mappings, so we do key mappings late.
  * ============================================================================================== */
 
+// Standard plugins
 #include <Kaleidoscope.h>
-#include <Kaleidoscope-ModifierLayers.h>  // for changing how number & punctation keys shift
 #include <Kaleidoscope-MouseKeys.h>  // for enabling mouse control in numlock mode
 #include <Kaleidoscope-Macros.h>  // for making shifted numbers be macros
-
 #include <Kaleidoscope-LEDControl.h>  // for controlling the LEDs
-#include <Kaleidoscope-CapsLock.h>  // "caps are locked" LED mode
-#include <LED-Off.h> // "LEDs are off" LED mode
 #include <Kaleidoscope-LEDEffect-BootGreeting.h>  // pulses the LED button for 10s upon power-on
 #include <Kaleidoscope-LEDEffect-SolidColor.h>  // LED modes that set all LEDs to a single color
 #include <Kaleidoscope-LEDEffect-Breathe.h>  // LED modes that make the keys "breathe"
 #include <Kaleidoscope-LEDEffect-Rainbow.h> // LED mode that pulses the keys in a rainbow pattern
-#include <Kaleidoscope-LEDEffect-DigitalRain.h>  // matrix style LED mode
 #include <Kaleidoscope-LED-Stalker.h>  // "plz reveal my password" mode
 #include <Kaleidoscope-LED-AlphaSquare.h>  // "no really make my password super obvious" mode
+
+// 3rd party plugins
+#include <Kaleidoscope-CapsLock.h>  // "caps are locked" LED mode
+#include <Kaleidoscope-LEDEffect-DigitalRain.h>  // matrix style LED mode
+#include <Kaleidoscope-ModifierLayers.h>  // for changing how number & punctation keys shift
 
 
 /* ------------------------------------------------------------------------------------------------
@@ -36,13 +37,13 @@
 // These 'solid' color effect definitions define a rainbow of
 // LED color modes calibrated to draw 500mA or less on the
 // Keyboardio Model 01.
-static kaleidoscope::LEDSolidColor solidRed(160, 0, 0);
-static kaleidoscope::LEDSolidColor solidOrange(140, 70, 0);
-static kaleidoscope::LEDSolidColor solidYellow(130, 100, 0);
-static kaleidoscope::LEDSolidColor solidGreen(0, 160, 0);
-static kaleidoscope::LEDSolidColor solidBlue(0, 100, 130);
-static kaleidoscope::LEDSolidColor solidIndigo(0, 0, 170);
-static kaleidoscope::LEDSolidColor solidViolet(130, 0, 120);
+static kaleidoscope::plugin::LEDSolidColor solidRed(160, 0, 0);
+static kaleidoscope::plugin::LEDSolidColor solidOrange(140, 70, 0);
+static kaleidoscope::plugin::LEDSolidColor solidYellow(130, 100, 0);
+static kaleidoscope::plugin::LEDSolidColor solidGreen(0, 160, 0);
+static kaleidoscope::plugin::LEDSolidColor solidBlue(0, 100, 130);
+static kaleidoscope::plugin::LEDSolidColor solidIndigo(0, 0, 170);
+static kaleidoscope::plugin::LEDSolidColor solidViolet(130, 0, 120);
 
 void config_and_use_LED_modes() {
   LEDRainbowEffect.brightness(150);
@@ -194,7 +195,7 @@ enum { DVORAK, SHIFTED, FUNCTION };  // layers
  ___)
  */
 
-const Key keymaps[][ROWS][COLS] PROGMEM = {
+KEYMAPS(
   /* Dvorak base layer
 
 ┌───┬───┬───┬───┬───┬───┬───┐                   ┌───┬───┬───┬───┬───┬───┬───┐
@@ -289,7 +290,7 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
                     LSHIFT(Key_0),          K_Equals,       LSHIFT(K_Equals), LSHIFT(K_4),      LSHIFT(K_8),         LSHIFT(K_Minus),
    ___,             K_6,                    K_7,            K_8,              K_9,              K_0,                 ___,
 
-   ___, Key_Delete, ___, ___,      
+   ___, Key_Delete, ___, ___,
    ___)
 };
 // *INDENT-ON*
@@ -298,8 +299,7 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
 static const kaleidoscope::ModifierLayers::overlay_t overlays[] = {
   {LAYER_MODIFIER_KEY(Key_LeftShift) | LAYER_MODIFIER_KEY(Key_RightShift), DVORAK, SHIFTED},
   {0, 0, 0}
-};
-
+)
 
 /* ------------------------------------------------------------------------------------------------
  *  Main setup & loop functions
@@ -327,6 +327,8 @@ void setup() {
 
   ModifierLayers.overlays = overlays;
   config_and_use_LED_modes();
+
+  CapsLock.color = CRGB(0, 0, 255);
 }
 
 void loop() {
