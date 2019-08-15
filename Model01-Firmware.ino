@@ -218,7 +218,7 @@ KEYMAPS(
    LSHIFT(K_Quote), K_A,          K_O,      K_E,       K_U,  K_I,
    Key_UpArrow,     K_Semicolon,  K_Q,      K_J,       K_K,  K_X,  Key_LeftArrow,
 
-   Key_LeftGui, Key_LeftControl, Key_LeftShift, Key_LeftAlt,
+   Key_LeftGui, Key_CapsLock, Key_LeftShift, Key_LeftAlt,
    ShiftToLayer(FUNCTION),
 
    M(ANY),          ___,  ___,  ___,  ___,  ___,  ___,
