@@ -1,3 +1,5 @@
+**Quick start**: With nix, run `nix-shell --run "make flash"` to flash the firmware.
+
 # Keyboardio Model 01 Firmware 
 
 _The default firmware for the Keyboardio Model 01_
