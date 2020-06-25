@@ -25,7 +25,7 @@
 #include <Kaleidoscope-LED-AlphaSquare.h>  // "no really make my password super obvious" mode
 
 // 3rd party plugins
-#include <Kaleidoscope-CapsLock.h>  // "caps are locked" LED mode
+/* #include <Kaleidoscope-CapsLock.h>  // "caps are locked" LED mode */
 #include <Kaleidoscope-LEDEffect-DigitalRain.h>  // matrix style LED mode
 #include <Kaleidoscope-ModifierLayers.h>  // for changing how number & punctation keys shift
 
@@ -309,7 +309,7 @@ KALEIDOSCOPE_INIT_PLUGINS(
   ModifierLayers,
   Macros,
   MouseKeys,
-  CapsLock,
+  /* CapsLock, */
   BootGreetingEffect,
   LEDControl,
   LEDOff,
@@ -328,7 +328,7 @@ void setup() {
   ModifierLayers.overlays = overlays;
   config_and_use_LED_modes();
 
-  CapsLock.color = CRGB(0, 0, 255);
+  /* CapsLock.color = CRGB(0, 0, 255); */
 }
 
 void loop() {
