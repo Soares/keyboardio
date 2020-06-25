@@ -269,11 +269,11 @@ KEYMAPS(
 ┌───┬───┬───┬───┬───┬───┬───┐                   ┌───┬───┬───┬───┬───┬───┬───┐
 │Prg│   │   │   │   │   │LED│                   │Any│   │   │   │   │   │   │
 ├───┼───┼───┼───┼───┼───┼───┤                   ├───┼───┼───┼───┼───┼───┼───┤
-│ ! │ ' │ , │ . │ < │ [ │   │                   │   │ ] │ > │ @ │ ~ │ ` │ ? │
+│ ! │ ' │ , │ . │ / │ [ │   │                   │   │ ] │ \ │ @ │ ~ │ ` │ ? │
 ├───┼───┼───┼───┼───┼───┤   │                   │   ├───┼───┼───┼───┼───┼───┤
 │ " │ ^ │ # │ % │ : │ ( ├───┘                   └───┤ ) │ = │ + │ * │ $ │ - │
 ├───┼───┼───┼───┼───┼───┼───┐                   ┌───┼───┼───┼───┼───┼───┼───┤
-│Ext│ ; │Dig│ & │ / │ { │   │                   │   │ } │ \ │ | │Dig│ _ │Ext│
+│Ext│ ; │Dig│ & │ < │ { │   │                   │   │ } │ > │ | │Dig│ _ │Ext│
 └───┴───┴───┴───┴───┼───┼───┼───┬───┐   ┌───┬───┼───┼───┼───┴───┴───┴───┴───┘
                     │Cmd│Ctl│Shf│Alt│   │Tab│Del│Spc│Esc│
                     └───┴───┼───┼───┘   └───┼───┼───┴───┘
@@ -282,17 +282,17 @@ KEYMAPS(
   */
   [SYMBOL] = KEYMAP_STACKED
   (___,  ___,         ___,          ___,         ___,                 ___,                   ___,
-   ___,  ___,         ___,          ___,         LSHIFT(K_Comma),     K_LeftBracket,         ___,
+   ___,  ___,         ___,          ___,         K_Slash,             K_LeftBracket,         ___,
    ___,  LSHIFT(K_6), LSHIFT(K_3),  LSHIFT(K_5), LSHIFT(K_Semicolon), LSHIFT(K_9),
-   ___,  ___,         Key_RightAlt, LSHIFT(K_7), K_Slash,             LSHIFT(K_LeftBracket), ___,
+   ___,  ___,         Key_RightAlt, LSHIFT(K_7), LSHIFT(K_Comma),     LSHIFT(K_LeftBracket), ___,
 
    ___, ___, ___, ___,
    ShiftToLayer(SYMBOL),
 
    ___,  ___,                    ___,              ___,                 ___,                ___,             ___,
-   ___,  K_RightBracket,         LSHIFT(K_Period), LSHIFT(K_2),         LSHIFT(K_Backtick), K_Backtick,      ___,
+   ___,  K_RightBracket,         K_Backslash, LSHIFT(K_2),         LSHIFT(K_Backtick), K_Backtick,      ___,
          LSHIFT(Key_0),          K_Equals,         LSHIFT(K_Equals),    LSHIFT(K_8),        LSHIFT(K_4),     ___,
-   ___,  LSHIFT(K_RightBracket), K_Backslash,      LSHIFT(K_Backslash), Key_RightAlt,       LSHIFT(K_Minus), ___,
+   ___,  LSHIFT(K_RightBracket), LSHIFT(K_Period), LSHIFT(K_Backslash), Key_RightAlt,       LSHIFT(K_Minus), ___,
 
    ___, Key_Delete, ___, ___,
    ___),
