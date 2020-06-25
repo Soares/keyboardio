@@ -29,6 +29,9 @@
 #include <Kaleidoscope-LEDEffect-DigitalRain.h>  // matrix style LED mode
 #include <Kaleidoscope-ModifierLayers.h>  // for changing how number & punctation keys shift
 
+// TODOs:
+// - Numlock
+// - Purple lights
 
 /* ------------------------------------------------------------------------------------------------
  *  LED Mode configuration
