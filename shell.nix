@@ -1,44 +1,28 @@
-with import <nixpkgs> {};
-
 let
-  kaleidoscope-capslock = fetchgit {
-    url    = https://github.com/malob/Kaleidoscope-CapsLock.git;
-    rev    = "bac882d";
-    sha256 = "1psyrqv0w443c6f6pnwz9j25s8ghzscf9q9dd849q1lxh0h7zi0s";
-  };
+  srcs = import nix/sources.nix;
 
-  kaleidoscope-modiferlayers = fetchgit {
-    url    = https://github.com/malob/Kaleidoscope-ModifierLayers.git;
-    rev    = "11e0042";
-    sha256 = "0wg9n73pxvk1b1nzxvw3p9kbfdwy24pd0msd7rvnq8js55sxbhbp";
-  };
+  pkgs = import srcs.nixpkgs {};
 
-  kaleidoscope-digitalrain = fetchgit {
-    url    = https://github.com/tremby/Kaleidoscope-LEDEffect-DigitalRain.git;
-    rev    = "64ec506";
-    sha256 = "0bd2576m25ijrcs3xh9vid36bw5w9cpdqxdypsz1mwbazfff3arr";
-  };
-
-  keyboardioEnv = stdenv.mkDerivation {
+  keyboardioEnv = pkgs.stdenv.mkDerivation {
     phases = [ "unpackPhase" "installPhase" ];
     name   = "keyboardioEnv";
-    src    = fetchgit {
+    src    = pkgs.fetchgit {
       url    = https://github.com/keyboardio/Kaleidoscope-Bundle-Keyboardio.git;
-      rev    = "b354e5c";
-      sha256 = "1j28k0lyxrwd8zy61p3lvjmvq4drx460q55zrnq40y3rrz0dazcl";
+      rev    = "577015c";
+      sha256 = "1k3qcllqhlz55wmd5ci9kc36431d7cbbimqxn1rvx1rvwqa0zy3d";
     };
     installPhase = ''
       rootDir=$out/hardware/keyboardio
       mkdir -p $rootDir
       cp -r *  $rootDir/
-      ln -s ${kaleidoscope-capslock}      $rootDir/avr/libraries/Kaleidoscope-CapsLock
-      ln -s ${kaleidoscope-modiferlayers} $rootDir/avr/libraries/Kaleidoscope-ModifierLayers
-      ln -s ${kaleidoscope-digitalrain}   $rootDir/avr/libraries/Kaleidoscope-LEDEffect-DigitalRain
+      ln -s ${srcs.Kaleidoscope-CapsLock} $rootDir/avr/libraries/Kaleidoscope-CapsLock
+      ln -s ${srcs.Kaleidoscope-ModifierLayers} $rootDir/avr/libraries/Kaleidoscope-ModifierLayers
+      ln -s ${srcs.Kaleidoscope-LEDEffect-DigitalRain} $rootDir/avr/libraries/Kaleidoscope-LEDEffect-DigitalRain
     '';
   };
-in mkShell {
+in with pkgs; mkShell {
   name           = "keyboadioShell";
-  buildInputs    = [ gnumake arduino ];
+  buildInputs    = [ niv gnumake arduino ];
   ARDUINO_PATH   = "${arduino}/share/arduino";
   SKETCHBOOK_DIR = "${keyboardioEnv}";
 }

@@ -1,0 +1,57 @@
+{
+    "Kaleidoscope-Bundle-Keyboardio": {
+        "ref": "master",
+        "repo": "https://github.com/keyboardio/Kaleidoscope-Bundle-Keyboardio.git",
+        "rev": "577015ca5f52735d495987c9b106712618004273",
+        "submodule": true,
+        "type": "git"
+    },
+    "Kaleidoscope-CapsLock": {
+        "branch": "fix-keyboardio-apis",
+        "description": "CAPS LOCK plugin for Kaleidoscope",
+        "homepage": null,
+        "owner": "malob",
+        "repo": "Kaleidoscope-CapsLock",
+        "rev": "bac882dfdcff90103951853b1059c9baf8c82539",
+        "sha256": "1psyrqv0w443c6f6pnwz9j25s8ghzscf9q9dd849q1lxh0h7zi0s",
+        "type": "tarball",
+        "url": "https://github.com/malob/Kaleidoscope-CapsLock/archive/bac882dfdcff90103951853b1059c9baf8c82539.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "Kaleidoscope-LEDEffect-DigitalRain": {
+        "branch": "main",
+        "description": "A digital rain LED effect (a la The Matrix) for Kaleidoscope",
+        "homepage": null,
+        "owner": "tremby",
+        "repo": "Kaleidoscope-LEDEffect-DigitalRain",
+        "rev": "bd2e4665027a0d367999a7015e7cbe090491251c",
+        "sha256": "04mwx5kfj1i8y7x44dkh00rv9glwazdj8g5n1lbkv98pqfyxfijl",
+        "type": "tarball",
+        "url": "https://github.com/tremby/Kaleidoscope-LEDEffect-DigitalRain/archive/bd2e4665027a0d367999a7015e7cbe090491251c.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "Kaleidoscope-ModifierLayers": {
+        "branch": "fix-keyboardio-apis",
+        "description": "Modifier key layers for Kaleidoscope",
+        "homepage": null,
+        "owner": "malob",
+        "repo": "Kaleidoscope-ModifierLayers",
+        "rev": "27efcce675b7dbcf6835dce3f03643ee6c7418e0",
+        "sha256": "1mc43j2km4qii4k81crrxx26xcb8qb0fnw8iqxl30b1zk1ig2q21",
+        "type": "tarball",
+        "url": "https://github.com/malob/Kaleidoscope-ModifierLayers/archive/27efcce675b7dbcf6835dce3f03643ee6c7418e0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs": {
+        "branch": "nixpkgs-unstable",
+        "description": "Nix Packages collection",
+        "homepage": null,
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "f9eba87bf03318587df8356a933f20cfbc81c6ee",
+        "sha256": "15cfqd3hargafkhfq5p9hw75dibnbajh06ha69k18scg9l1p1hnl",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/f9eba87bf03318587df8356a933f20cfbc81c6ee.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    }
+}
