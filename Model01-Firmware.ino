@@ -273,9 +273,9 @@ KEYMAPS(
 ├───┼───┼───┼───┼───┼───┤   │                   │   ├───┼───┼───┼───┼───┼───┤
 │ " │ ^ │ # │ * │ : │ ( ├───┘                   └───┤ ) │ = │ + │ % │ $ │ - │
 ├───┼───┼───┼───┼───┼───┼───┐                   ┌───┼───┼───┼───┼───┼───┼───┤
-│Alt│ ; │   │ & │ < │ [ │   │                   │   │ ] │ > │ | │   │   │Cmp│
+│Alt│ ; │   │ & │ < │ [ │   │                   │   │ ] │ > │ | │   │ _ │Cmp│
 └───┴───┴───┴───┴───┼───┼───┼───┬───┐   ┌───┬───┼───┼───┼───┴───┴───┴───┴───┘
-                    │Ent│Ctl│Shf│Cmd│   │Tab│Del│ _ │Esc│
+                    │Ent│Ctl│Shf│Cmd│   │Tab│Del│Spc│Esc│
                     └───┴───┼───┼───┘   └───┼───┼───┴───┘
                             │Fn₁│           │Fn₂│
                             └───┘           └───┘
@@ -289,12 +289,12 @@ KEYMAPS(
    ___, ___, ___, ___,
    ShiftToLayer(SYMBOL),
 
-   ___,  XXX,                    XXX,              XXX,                 XXX,                XXX,          ___,
-   ___,  LSHIFT(K_RightBracket), K_Backslash,      LSHIFT(K_2),         LSHIFT(K_Backtick), K_Backtick,   ___,
-         LSHIFT(Key_0),          K_Equals,         LSHIFT(K_Equals),    LSHIFT(K_5),        LSHIFT(K_4),  ___,
-   ___,  K_RightBracket,         LSHIFT(K_Period), LSHIFT(K_Backslash), XXX,                XXX,          ___,
+   ___,  XXX,                    XXX,              XXX,                 XXX,                XXX,             ___,
+   ___,  LSHIFT(K_RightBracket), K_Backslash,      LSHIFT(K_2),         LSHIFT(K_Backtick), K_Backtick,      ___,
+         LSHIFT(Key_0),          K_Equals,         LSHIFT(K_Equals),    LSHIFT(K_5),        LSHIFT(K_4),     ___,
+   ___,  K_RightBracket,         LSHIFT(K_Period), LSHIFT(K_Backslash), XXX,                LSHIFT(K_Minus), ___,
 
-   ___, Key_Delete, LSHIFT(K_Minus), ___,
+   ___, Key_Delete, ___, ___,
    ___),
 
   /* Extras layer
