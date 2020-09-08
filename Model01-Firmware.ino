@@ -205,9 +205,9 @@ KEYMAPS(
 ├───┼───┼───┼───┼───┼───┤Pau│                   │Up ├───┼───┼───┼───┼───┼───┤
 │ " │ a │ o │ e │ u │ i ├───┘                   └───┤ d │ h │ t │ n │ s │ - │
 ├───┼───┼───┼───┼───┼───┼───┐                   ┌───┼───┼───┼───┼───┼───┼───┤
-│ ↑ │ ; │ q │ j │ k │ x │ ← │                   │ → │ b │ m │ w │ v │ z │ ↓ │
+│Alt│ ; │ q │ j │ k │ x │ ↓ │                   │ ↑ │ b │ m │ w │ v │ z │Clk│
 └───┴───┴───┴───┴───┼───┼───┼───┬───┐   ┌───┬───┼───┼───┼───┴───┴───┴───┴───┘
-                    │Ctl│Bsp│Shf│Alt│   │Tab│Cmd│Spc│Esc│
+                    │Cmp│Ctl│Shf│Cmd│   │Tab│Bsp│Spc│Esc│
                     └───┴───┼───┼───┘   └───┼───┼───┴───┘
                             │Fnc│           │Ent│
                             └───┘           └───┘
@@ -216,9 +216,9 @@ KEYMAPS(
   (___,             ___,          ___,      ___,       ___,  ___,  Key_LEDEffectNext,
    LSHIFT(K_1),     K_Quote,      K_Comma,  K_Period,  K_P,  K_Y,  K_PlayPause,
    LSHIFT(K_Quote), K_A,          K_O,      K_E,       K_U,  K_I,
-   Key_UpArrow,     K_Semicolon,  K_Q,      K_J,       K_K,  K_X,  Key_LeftArrow,
+   Key_LeftAlt,     K_Semicolon,  K_Q,      K_J,       K_K,  K_X,  Key_CapsLock,
 
-   Key_LeftGui, Key_LeftControl, Key_LeftShift, Key_LeftAlt,
+   Key_RightAlt, Key_LeftControl, Key_LeftShift, Key_LeftGui,
    ShiftToLayer(FUNCTION),
 
    M(ANY),          ___,  ___,  ___,  ___,  ___,  ___,
@@ -235,11 +235,11 @@ KEYMAPS(
 ├───┼───┼───┼───┼───┼───┼───┤                   ├───┼───┼───┼───┼───┼───┼───┤
 │ ! │ ' │ , │ . │ P │ Y │Prv│                   │Mut│ F │ G │ C │ R │ L │ ? │
 ├───┼───┼───┼───┼───┼───┤Trk│                   │   ├───┼───┼───┼───┼───┼───┤
-│ " │ A │ O │ E │ U │ I ├───┘                   └───┤ D │ H │ T │ N │ S │ - │
+│ " │ A │ O │ E │ U │ I ├───┘                   └───┤ D │ H │ T │ N │ S │ _ │
 ├───┼───┼───┼───┼───┼───┼───┐                   ┌───┼───┼───┼───┼───┼───┼───┤
-│ ↑ │ ; │ Q │ J │ K │ X │ ← │                   │ → │ B │ M │ W │ V │ Z │ ↓ │
+│Alt│ : │ Q │ J │ K │ X │ ↓ │                   │ ↑ │ B │ M │ W │ V │ Z │Clk│
 └───┴───┴───┴───┴───┼───┼───┼───┬───┐   ┌───┬───┼───┼───┼───┴───┴───┴───┴───┘
-                    │Cmd│Ctl│Shf│Alt│   │Tab│Bsp│Spc│Esc│
+                    │Cmp│Ctl│Shf│Cmd│   │Tab│Bsp│Spc│Esc│
                     └───┴───┼───┼───┘   └───┼───┼───┴───┘
                             │Fnc│           │Ent│
                             └───┘           └───┘
@@ -248,14 +248,14 @@ KEYMAPS(
   (___, ___,         ___,           ___,      ___, ___, Key_LEDEffectPrevious,
    ___, K_Quote,     K_Comma,       K_Period, ___, ___, K_PrevTrack,
    ___, ___,         ___,           ___,      ___, ___,
-   ___, K_Semicolon, ___,           ___,      ___, ___, ___,
+   ___, ___, ___,           ___,      ___, ___, ___,
 
    ___, ___, ___, ___,
    ___,
 
    ___,    ___, ___, ___, ___, ___, ___,
    K_Mute, ___, ___, ___, ___, ___, ___,
-           ___, ___, ___, ___, ___, K_Minus,
+           ___, ___, ___, ___, ___, ___,
    ___,    ___, ___, ___, ___, ___, ___,
 
    ___, ___, ___, ___,
@@ -267,9 +267,9 @@ KEYMAPS(
 ├───┼───┼───┼───┼───┼───┼───┤                   ├───┼───┼───┼───┼───┼───┼───┤
 │ ~ │ & │ < │ / │ [ │ { │Nxt│                   │Vol│ } │ ] │ \ │ > │ | │ @ │
 ├───┼───┼───┼───┼───┼───┤Trk│                   │Dn ├───┼───┼───┼───┼───┼───┤
-│ ` │ # │ ^ │ % │ : │ ( ├───┘                   └───┤ ) │ = │ + │ $ │ * │ _ │
+│ ` │ ^ │ # │ % │ : │ ( ├───┘                   └───┤ ) │ = │ + │ * │ $ │ _ │
 ├───┼───┼───┼───┼───┼───┼───┐                   ┌───┼───┼───┼───┼───┼───┼───┤
-│ ↑ │ 1 │ 2 │ 3 │ 4 │ 5 │ ← │                   │ → │ 6 │ 7 │ 8 │ 9 │ 0 │ ↓ │
+│ ↑ │ 1 │ 2 │ 3 │ 4 │ 5 │ ← │                   │ → │ 6 │ 7 │ 8 │ 9 │ 0 │Clk│
 └───┴───┴───┴───┴───┼───┼───┼───┬───┐   ┌───┬───┼───┼───┼───┴───┴───┴───┴───┘
                     │Cmd│Ctl│Clk│Alt│   │Tab│Del│Spc│Esc│
                     └───┴───┼───┼───┘   └───┼───┼───┴───┘
@@ -279,16 +279,16 @@ KEYMAPS(
   [FUNCTION] =  KEYMAP_STACKED
   (Key_Power,          ___,         ___,             ___,         ___,                 ___,                   M(LOCK),
    LSHIFT(K_Backtick), LSHIFT(K_7), LSHIFT(K_Comma), K_Slash,     K_LeftBracket,       LSHIFT(K_LeftBracket), K_NextTrack,
-   K_Backtick,         LSHIFT(K_3), LSHIFT(K_6),     LSHIFT(K_5), LSHIFT(K_Semicolon), LSHIFT(K_9),
-   ___,                K_1,         K_2,             K_3,         K_4,                 K_5,                   ___,
+   K_Backtick,         LSHIFT(K_6), LSHIFT(K_3),     LSHIFT(K_5), LSHIFT(K_Semicolon), LSHIFT(K_9),
+   ___,                K_1,         K_2,             K_3,         K_4,                 K_5,                   Key_LeftArrow,
 
-   ___, ___, Key_CapsLock, ___,
+   ___, ___, ___, ___,
    ShiftToLayer(FUNCTION),
 
    ___,             ___,                    ___,            ___,              ___,              ___,                 ___,
    Key_VolumeDown,  LSHIFT(K_RightBracket), K_RightBracket, K_Backslash,      LSHIFT(K_Period), LSHIFT(K_Backslash), LSHIFT(K_2),
-                    LSHIFT(Key_0),          K_Equals,       LSHIFT(K_Equals), LSHIFT(K_4),      LSHIFT(K_8),         LSHIFT(K_Minus),
-   ___,             K_6,                    K_7,            K_8,              K_9,              K_0,                 ___,
+                    LSHIFT(Key_0),          K_Equals,       LSHIFT(K_Equals), LSHIFT(K_8),      LSHIFT(K_4),         LSHIFT(K_Minus),
+   Key_RightArrow,  K_6,                    K_7,            K_8,              K_9,              K_0,                 ___,
 
    ___, Key_Delete, ___, ___,
    ___)
@@ -299,7 +299,7 @@ KEYMAPS(
 static const kaleidoscope::ModifierLayers::overlay_t overlays[] = {
   {LAYER_MODIFIER_KEY(Key_LeftShift) | LAYER_MODIFIER_KEY(Key_RightShift), DVORAK, SHIFTED},
   {0, 0, 0}
-)
+}
 
 /* ------------------------------------------------------------------------------------------------
  *  Main setup & loop functions
