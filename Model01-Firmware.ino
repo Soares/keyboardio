@@ -14,8 +14,8 @@
 
 // Standard plugins
 #include <Kaleidoscope.h>
-#include <Kaleidoscope-MouseKeys.h>  // for enabling mouse control in numlock mode
 #include <Kaleidoscope-Macros.h>  // for making shifted numbers be macros
+#include <Kaleidoscope-TopsyTurvy.h>  // for inverting ~ and `
 #include <Kaleidoscope-LEDControl.h>  // for controlling the LEDs
 #include <Kaleidoscope-LEDEffect-BootGreeting.h>  // pulses the LED button for 10s upon power-on
 #include <Kaleidoscope-LEDEffect-SolidColor.h>  // LED modes that set all LEDs to a single color
@@ -25,9 +25,7 @@
 #include <Kaleidoscope-LED-AlphaSquare.h>  // "no really make my password super obvious" mode
 
 // 3rd party plugins
-/* #include <Kaleidoscope-CapsLock.h>  // "caps are locked" LED mode */
 #include <Kaleidoscope-LEDEffect-DigitalRain.h>  // matrix style LED mode
-#include <Kaleidoscope-ModifierLayers.h>  // for changing how number & punctation keys shift
 
 // TODOs:
 // - Numlock
@@ -60,9 +58,12 @@ void config_and_use_LED_modes() {
  *  Macro definitions
  * ---------------------------------------------------------------------------------------------- */
 
-enum { ANY,        // presses a random key when the Any key is pressed
-       LOCK,       // Locks the screen
-     };
+enum {
+  MACRO_ANY,  // presses a random key when the Any key is pressed
+  /* MACRO_QUOTE,  // Unshiftable single-quote */
+  /* MACRO_COMMA,  // Unshiftable comma */
+  /* MACRO_PERIOD,  // Unshiftable period */
+};
 
 static void anyKeyMacro(uint8_t keyState) {
   static Key lastKey;
@@ -78,36 +79,116 @@ static void anyKeyMacro(uint8_t keyState) {
 
 const macro_t *macroAction(uint8_t macroIndex, uint8_t keyState) {
   switch (macroIndex) {
+    case MACRO_ANY:
+      anyKeyMacro(keyState);
+      break;
 
-  case ANY:
-    anyKeyMacro(keyState);
-    break;
+    /* case MACRO_QUOTE: */
+    /*   unshiftable(0x39, keyState); */
+    /*   break; */
 
-  case LOCK:
-    MACRODOWN(D(LeftControl), D(LeftShift), T(Power), U(LeftShift), U(LeftControl));
-    break;
+    /* case MACRO_COMMA: */
+    /*   unshiftable(0x44, keyState); */
+    /*   break; */
+
+    /* case MACRO_PERIOD: */
+    /*   unshiftable(0x46, keyState); */
+    /*   break; */
+
   }
   return MACRO_NONE;
 }
-
 
 /* ------------------------------------------------------------------------------------------------
  *  Key mappings
  * ---------------------------------------------------------------------------------------------- */
 
-// Aliases:
+/*
+ * Grid template:
+ *
+ * ┌───┬───┬───┬───┬───┬───┬───┐                   ┌───┬───┬───┬───┬───┬───┬───┐
+ * │   │   │   │   │   │   │   │                   │   │   │   │   │   │   │   │
+ * ├───┼───┼───┼───┼───┼───┼───┤                   ├───┼───┼───┼───┼───┼───┼───┤
+ * │   │   │   │   │   │   │   │                   │   │   │   │   │   │   │   │
+ * ├───┼───┼───┼───┼───┼───┤   │                   │   ├───┼───┼───┼───┼───┼───┤
+ * │   │   │   │   │   │   ├───┘                   └───┤   │   │   │   │   │   │
+ * ├───┼───┼───┼───┼───┼───┼───┐                   ┌───┼───┼───┼───┼───┼───┼───┤
+ * │   │   │   │   │   │   │   │                   │   │   │   │   │   │   │   │
+ * └───┴───┴───┴───┴───┼───┼───┼───┬───┐   ┌───┬───┼───┼───┼───┴───┴───┴───┴───┘
+ *                     │   │   │   │   │   │   │   │   │   │
+ *                     └───┴───┼───┼───┘   └───┼───┼───┴───┘
+ *                             │   │           │   │
+ *                             └───┘           └───┘
+ *
+ * Layout template:
+ *
+ * (___, ___, ___, ___, ___, ___, ___,
+ *  ___, ___, ___, ___, ___, ___, ___,
+ *  ___, ___, ___, ___, ___, ___,
+ *  ___, ___, ___, ___, ___, ___, ___,
+ *  ___, ___, ___, ___,
+ *  ___,
+ *
+ *  ___, ___, ___, ___, ___, ___, ___,
+ *  ___, ___, ___, ___, ___, ___, ___,
+ *       ___, ___, ___, ___, ___, ___,
+ *  ___, ___, ___, ___, ___, ___, ___,
+ *  ___, ___, ___, ___,
+ *  ___)
+ */
+
+/* Aliases:
+ *
+ * These aliases serve a few purposes:
+ *
+ * 1. The OS is in dvorak mode, which means it translates an eg S keypress to an O keypress, etc.
+ *    Notably, it also maps, eg, a ] to a =.
+ *    When we remap our symbols, we would like to say "put a = here", rather than "put a ] here".
+ *    This means we would like the Key_RightBracket name to mean the code associated to Key_Equals.
+ * 2. The OS swaps left control and caps lock.
+ *    This ensures that when we switch to the laptop keyboard, control & capslock are as desired.
+ *    We would like to, in our keymaps, say things like LeftControl where we want LeftControl.
+ *    Thus, we would like Key_LeftControl to mean the code associated to Key_CapsLock & vice versa.
+ *
+ * Rather than trying to change what the Key_* symbols expand to, we simply use the K_* namespace.
+ * For uniformity, we also bring a bunch of other codes (such as arrow codes, delete codes, etc.)
+ * into the K_* namespace, so that we don't need to worry about which ones have been remapped.
+ *
+ * TODO: this doesn't play nice w/ things like TOPSY.
+ *
+ */
+
 #define UNUSED XXX  // marks keys that are "open"
 
-#define K_NextTrack Consumer_ScanNextTrack
-#define K_PrevTrack Consumer_ScanPreviousTrack
-#define K_PlayPause Consumer_PlaySlashPause
-#define K_Mute Key_Mute
-#define K_LeftClick Key_mouseBtnL
-#define K_RightClick Key_mouseBtnR
-#define K_MiddleClick Key_mouseBtnM
-
 // Dvorak -> Qwerty
-//Row 4
+
+// Modifiers
+#define K_LeftControl Key_CapsLock
+#define K_CapsLock Key_LeftControl
+
+#define K_LeftAlt Key_LeftAlt
+#define K_RightAlt Key_RightAlt
+#define K_RightControl Key_RightControl
+#define K_LeftGui Key_LeftGui
+#define K_RightGui Key_RightGui
+#define K_LeftShift Key_LeftShift
+#define K_RightShift Key_RightShift
+
+// Row 5
+#define K_F1 Key_F1
+#define K_F2 Key_F2
+#define K_F3 Key_F3
+#define K_F4 Key_F4
+#define K_F5 Key_F5
+#define K_F6 Key_F6
+#define K_F7 Key_F7
+#define K_F8 Key_F8
+#define K_F9 Key_F9
+#define K_F10 Key_F10
+#define K_F11 Key_F11
+#define K_F12 Key_F12
+
+// Row 4
 #define K_Backtick Key_Backtick
 #define K_1 Key_1
 #define K_2 Key_2
@@ -121,8 +202,10 @@ const macro_t *macroAction(uint8_t macroIndex, uint8_t keyState) {
 #define K_0 Key_0
 #define K_LeftBracket Key_Minus
 #define K_RightBracket Key_Equals
+#define K_Backspace Key_Backspace
 
 // Row 3
+#define K_Tab Key_Tab
 #define K_Quote Key_Q
 #define K_Comma Key_W
 #define K_Period Key_E
@@ -149,6 +232,7 @@ const macro_t *macroAction(uint8_t macroIndex, uint8_t keyState) {
 #define K_N Key_L
 #define K_S Key_Semicolon
 #define K_Minus Key_Quote
+#define K_Enter Key_Enter
 
 // Row 1
 #define K_Semicolon Key_Z
@@ -162,156 +246,151 @@ const macro_t *macroAction(uint8_t macroIndex, uint8_t keyState) {
 #define K_V Key_Period
 #define K_Z Key_Slash
 
-enum { DVORAK, SHIFTED, FUNCTION };  // layers
+// Other
+
+#define K_Spacebar Key_Spacebar
+#define K_Escape Key_Escape
+
+#define K_NextTrack Consumer_ScanNextTrack
+#define K_PrevTrack Consumer_ScanPreviousTrack
+#define K_PlayPause Consumer_PlaySlashPause
+#define K_Mute Key_Mute
+#define K_VolumeUp Key_VolumeUp
+#define K_VolumeDown Key_VolumeDown
+
+#define K_LEDEffectNext Key_LEDEffectNext
+#define K_LEDEffectPrevious Key_LEDEffectPrevious
+
+#define K_Power Key_Power
+
+#define K_Delete Key_Delete
+#define K_Home Key_Home
+#define K_End Key_End
+#define K_Insert Key_Insert
+#define K_PageUp Key_PageUp
+#define K_PageDown Key_PageDown
+#define K_PrintScreen Key_PrintScreen
+#define K_NumLock Key_NumLock
+
+#define K_UpArrow Key_UpArrow
+#define K_DownArrow Key_DownArrow
+#define K_LeftArrow Key_LeftArrow
+#define K_RightArrow Key_RightArrow
+
+#define K_LeftClick Key_mouseBtnL
+#define K_RightClick Key_mouseBtnR
+#define K_MiddleClick Key_mouseBtnM
+
+
+enum { DVORAK, FUNCTION };  // layers
+
+// TODO:
+// Brighter
+// Darker
+//
+// Some sort of numlock?
+//
+// Can compose key be one-shotted, and alt when held down? (Useful for eg Alt+# patterns)
+//
+// Shifted '
+// Shifted ,
+// Shifted .
 
 // *INDENT-OFF*
-/* Visual layer representation template
-
-┌───┬───┬───┬───┬───┬───┬───┐                   ┌───┬───┬───┬───┬───┬───┬───┐
-│   │   │   │   │   │   │   │                   │   │   │   │   │   │   │   │
-├───┼───┼───┼───┼───┼───┼───┤                   ├───┼───┼───┼───┼───┼───┼───┤
-│   │   │   │   │   │   │   │                   │   │   │   │   │   │   │   │
-├───┼───┼───┼───┼───┼───┤   │                   │   ├───┼───┼───┼───┼───┼───┤
-│   │   │   │   │   │   ├───┘                   └───┤   │   │   │   │   │   │
-├───┼───┼───┼───┼───┼───┼───┐                   ┌───┼───┼───┼───┼───┼───┼───┤
-│   │   │   │   │   │   │   │                   │   │   │   │   │   │   │   │
-└───┴───┴───┴───┴───┼───┼───┼───┬───┐   ┌───┬───┼───┼───┼───┴───┴───┴───┴───┘
-                    │   │   │   │   │   │   │   │   │   │
-                    └───┴───┼───┼───┘   └───┼───┼───┴───┘
-                            │   │           │   │
-                            └───┘           └───┘
-*/
-
-/* Layout template:
-(___, ___, ___, ___, ___, ___, ___,
- ___, ___, ___, ___, ___, ___, ___,
- ___, ___, ___, ___, ___, ___,
- ___, ___, ___, ___, ___, ___, ___,
- ___, ___, ___, ___,
- ___,
-
- ___, ___, ___, ___, ___, ___, ___,
- ___, ___, ___, ___, ___, ___, ___,
-      ___, ___, ___, ___, ___, ___,
- ___, ___, ___, ___, ___, ___, ___,
- ___, ___, ___, ___,
- ___)
- */
-
 KEYMAPS(
-  /* Dvorak base layer
-
-┌───┬───┬───┬───┬───┬───┬───┐                   ┌───┬───┬───┬───┬───┬───┬───┐
-│Prg│   │   │   │   │   │LED│                   │Any│   │   │   │   │   │   │
-├───┼───┼───┼───┼───┼───┼───┤                   ├───┼───┼───┼───┼───┼───┼───┤
-│ ! │ ' │ , │ . │ p │ y │Ply│                   │Vol│ f │ g │ c │ r │ l │ ? │
-├───┼───┼───┼───┼───┼───┤Pau│                   │Up ├───┼───┼───┼───┼───┼───┤
-│ ` │ a │ o │ e │ u │ i ├───┘                   └───┤ d │ h │ t │ n │ s │ - │
-├───┼───┼───┼───┼───┼───┼───┐                   ┌───┼───┼───┼───┼───┼───┼───┤
-│Alt│ ; │ q │ j │ k │ x │ ↓ │                   │ ↑ │ b │ m │ w │ v │ z │Clk│
-└───┴───┴───┴───┴───┼───┼───┼───┬───┐   ┌───┬───┼───┼───┼───┴───┴───┴───┴───┘
-                    │Cmp│Ctl│Shf│Cmd│   │Tab│Bsp│Spc│Esc│
-                    └───┴───┼───┼───┘   └───┼───┼───┴───┘
-                            │Fnc│           │Ent│
-                            └───┘           └───┘
-  */
+  /* Dvorak base layer:
+   *
+   * ┌───┬───┬───┬───┬───┬───┬───┐                   ┌───┬───┬───┬───┬───┬───┬───┐
+   * │Prg│Ins│PgU│Hom│Mut│Bri│LED│                   │Any│Dar│Prv│End│PgD│Prn│Pow│
+   * ├───┼───┼───┼───┼───┼───┼───┤                   ├───┼───┼───┼───┼───┼───┼───┤
+   * │ ! │ ' │ , │ . │ p │ y │Vol│                   │Ply│ f │ g │ c │ r │ l │ ? │
+   * ├───┼───┼───┼───┼───┼───┤Up │                   │Pau├───┼───┼───┼───┼───┼───┤
+   * │ " │ a │ o │ e │ u │ i ├───┘                   └───┤ d │ h │ t │ n │ s │ - │
+   * ├───┼───┼───┼───┼───┼───┼───┐                   ┌───┼───┼───┼───┼───┼───┼───┤
+   * │Alt│ ; │ q │ j │ k │ x │ ↓ │                   │ ↑ │ b │ m │ w │ v │ z │Clk│
+   * └───┴───┴───┴───┴───┼───┼───┼───┬───┐   ┌───┬───┼───┼───┼───┴───┴───┴───┴───┘
+   *                     │Cmp│Ctl│Shf│Cmd│   │Tab│Bsp│Spc│Esc│
+   *                     └───┴───┼───┼───┘   └───┼───┼───┴───┘
+   *                             │Fnc│           │Ent│
+   *                             └───┘           └───┘
+   *
+   * ┌───┬───┬───┬───┬───┬───┬───┐                   ┌───┬───┬───┬───┬───┬───┬───┐
+   * │Prg│Ins│PgU│Hom│Mut│Bri│LED│                   │Any│Dar│Prv│End│PgD│Prn│Pow│
+   * ├───┼───┼───┼───┼───┼───┼───┤                   ├───┼───┼───┼───┼───┼───┼───┤
+   * │ ! │ ' │ , │ . │ P │ Y │Vol│                   │Ply│ F │ G │ C │ R │ L │ ? │
+   * ├───┼───┼───┼───┼───┼───┤Up │                   │Pau├───┼───┼───┼───┼───┼───┤
+   * │ " │ A │ O │ E │ U │ I ├───┘                   └───┤ D │ H │ T │ N │ S │ _ │
+   * ├───┼───┼───┼───┼───┼───┼───┐                   ┌───┼───┼───┼───┼───┼───┼───┤
+   * │Alt│ : │ Q │ J │ K │ X │ ↓ │                   │ ↑ │ B │ M │ W │ V │ Z │Clk│
+   * └───┴───┴───┴───┴───┼───┼───┼───┬───┐   ┌───┬───┼───┼───┼───┴───┴───┴───┴───┘
+   *                     │Cmp│Ctl│Shf│Cmd│   │Tab│Bsp│Spc│Esc│
+   *                     └───┴───┼───┼───┘   └───┼───┼───┴───┘
+   *                             │Fnc│           │Ent│
+   *                             └───┘           └───┘
+   */
   [DVORAK] = KEYMAP_STACKED
-  (___,                ___,          ___,      ___,       ___,  ___,  Key_LEDEffectNext,
-   LSHIFT(K_1),        K_Quote,      K_Comma,  K_Period,  K_P,  K_Y,  K_PlayPause,
-   K_Backtick,         K_A,          K_O,      K_E,       K_U,  K_I,
-   Key_LeftAlt,        K_Semicolon,  K_Q,      K_J,       K_K,  K_X,  Key_CapsLock,
+  // Note that remapping PRG is a bad idea, b/c it makes flashing real annoying.
+  // Especially if you remap it to Power.
+  // STOP REMAPPING PRG TO POWER.
+  (XXX,              K_Insert,    K_PageUp, K_Home,   K_Mute, XXX, K_LEDEffectNext,
+   LSHIFT(K_1),      K_Quote,     K_Comma,  K_Period, K_P,    K_Y, K_VolumeUp,
+   LSHIFT(K_Quote),  K_A,         K_O,      K_E,      K_U,    K_I,
+   K_LeftAlt,        K_Semicolon, K_Q,      K_J,      K_K,    K_X, K_DownArrow,
 
-   Key_RightAlt, Key_LeftControl, Key_LeftShift, Key_LeftGui,
+   K_RightAlt, K_LeftControl, K_LeftShift, K_LeftGui,
    ShiftToLayer(FUNCTION),
 
-   M(ANY),          ___,  ___,  ___,  ___,  ___,  ___,
-   Key_VolumeUp,    K_F,  K_G,  K_C,  K_R,  K_L,  LSHIFT(K_Slash),
-                    K_D,  K_H,  K_T,  K_N,  K_S,  K_Minus,
-   Key_RightArrow,  K_B,  K_M,  K_W,  K_V,  K_Z,  Key_DownArrow,
+   M(MACRO_ANY), XXX,  K_PrevTrack, K_End, K_PageDown, K_PrintScreen, K_Power,
+   K_PlayPause,  K_F,  K_G,         K_C,   K_R,        K_L,           LSHIFT(K_Slash),
+                 K_D,  K_H,         K_T,   K_N,        K_S,           K_Minus,
+   K_UpArrow,    K_B,  K_M,         K_W,   K_V,        K_Z,           K_CapsLock,
 
-   Key_Tab, Key_Backspace, Key_Spacebar, Key_Escape,
-   Key_Enter),
+   K_Tab, K_Backspace, K_Spacebar, K_Escape,
+   K_Enter),
 
-  /* Shifted layer
-┌───┬───┬───┬───┬───┬───┬───┐                   ┌───┬───┬───┬───┬───┬───┬───┐
-│Prg│   │   │   │   │   │LED│                   │Any│   │   │   │   │   │   │
-├───┼───┼───┼───┼───┼───┼───┤                   ├───┼───┼───┼───┼───┼───┼───┤
-│ ! │ " │ < │ > │ P │ Y │Prv│                   │Mut│ F │ G │ C │ R │ L │ ? │
-├───┼───┼───┼───┼───┼───┤Trk│                   │   ├───┼───┼───┼───┼───┼───┤
-│ ~ │ A │ O │ E │ U │ I ├───┘                   └───┤ D │ H │ T │ N │ S │ _ │
-├───┼───┼───┼───┼───┼───┼───┐                   ┌───┼───┼───┼───┼───┼───┼───┤
-│Alt│ : │ Q │ J │ K │ X │ ↓ │                   │ ↑ │ B │ M │ W │ V │ Z │Clk│
-└───┴───┴───┴───┴───┼───┼───┼───┬───┐   ┌───┬───┼───┼───┼───┴───┴───┴───┴───┘
-                    │Cmp│Ctl│Shf│Cmd│   │Tab│Bsp│Spc│Esc│
-                    └───┴───┼───┼───┘   └───┼───┼───┴───┘
-                            │Fnc│           │Ent│
-                            └───┘           └───┘
-  */
-  [SHIFTED] = KEYMAP_STACKED
-  (___,        ___,         ___,           ___,      ___, ___, Key_LEDEffectPrevious,
-   ___,        ___,         ___,           ___,      ___, ___, K_PrevTrack,
-   ___,        ___,         ___,           ___,      ___, ___,
-   ___,        ___,         ___,           ___,      ___, ___, ___,
-
-   ___, ___, ___, ___,
-   ___,
-
-   ___,    ___, ___, ___, ___, ___, ___,
-   K_Mute, ___, ___, ___, ___, ___, ___,
-           ___, ___, ___, ___, ___, ___,
-   ___,    ___, ___, ___, ___, ___, ___,
-
-   ___, ___, ___, ___,
-   ___),
-
-  /* Right function layer
-┌───┬───┬───┬───┬───┬───┬───┐                   ┌───┬───┬───┬───┬───┬───┬───┐
-│Pow│   │   │   │   │   │Lck│                   │Any│   │   │   │   │   │   │
-├───┼───┼───┼───┼───┼───┼───┤                   ├───┼───┼───┼───┼───┼───┼───┤
-│ ! │ & │ < │ / │ [ │ { │Nxt│                   │Vol│ } │ ] │ \ │ > │ | │ ? │
-├───┼───┼───┼───┼───┼───┤Trk│                   │Dn ├───┼───┼───┼───┼───┼───┤
-│ @ │ ^ │ # │ % │ : │ ( ├───┘                   └───┤ ) │ = │ + │ * │ $ │ _ │
-├───┼───┼───┼───┼───┼───┼───┐                   ┌───┼───┼───┼───┼───┼───┼───┤
-│ ↑ │ 1 │ 2 │ 3 │ 4 │ 5 │ ← │                   │ → │ 6 │ 7 │ 8 │ 9 │ 0 │Clk│
-└───┴───┴───┴───┴───┼───┼───┼───┬───┐   ┌───┬───┼───┼───┼───┴───┴───┴───┴───┘
-                    │Cmd│Ctl│Clk│Alt│   │Tab│Del│Spc│Esc│
-                    └───┴───┼───┼───┘   └───┼───┼───┴───┘
-                            │Fnc│           │Ent│
-                            └───┘           └───┘
-  */
+  /* Function layer:
+   *
+   * ┌───┬───┬───┬───┬───┬───┬───┐                   ┌───┬───┬───┬───┬───┬───┬───┐
+   * │F1 │F2 │F3 │F4 │F5 │F6 │LBk│                   │Any│F7 │F8 │F9 │F10│F11│F12│
+   * ├───┼───┼───┼───┼───┼───┼───┤                   ├───┼───┼───┼───┼───┼───┼───┤
+   * │ ` │ & │ < │ / │ [ │ { │Vol│                   │Nxt│ } │ ] │ \ │ > │ | │ @ │
+   * ├───┼───┼───┼───┼───┼───┤Dn │                   │Trk├───┼───┼───┼───┼───┼───┤
+   * │ ~ │ ^ │ # │ % │ : │ ( ├───┘                   └───┤ ) │ = │ + │ * │ $ │ - │
+   * ├───┼───┼───┼───┼───┼───┼───┐                   ┌───┼───┼───┼───┼───┼───┼───┤
+   * │Alt│ 1 │ 2 │ 3 │ 4 │ 5 │ ← │                   │ → │ 6 │ 7 │ 8 │ 9 │ 0 │Clk│
+   * └───┴───┴───┴───┴───┼───┼───┼───┬───┐   ┌───┬───┼───┼───┼───┴───┴───┴───┴───┘
+   *                     │Cmp│Ctl│Shf│Cmd│   │Tab│Del│Spc│Esc│
+   *                     └───┴───┼───┼───┘   └───┼───┼───┴───┘
+   *                             │Fnc│           │Ent│
+   *                             └───┘           └───┘
+   */
   [FUNCTION] =  KEYMAP_STACKED
-  (Key_Power,          ___,         ___,             ___,         ___,                 ___,                   M(LOCK),
-   LSHIFT(K_Backtick), LSHIFT(K_7), LSHIFT(K_Comma), K_Slash,     K_LeftBracket,       LSHIFT(K_LeftBracket), K_NextTrack,
-   K_Backtick,         LSHIFT(K_6), LSHIFT(K_3),     LSHIFT(K_5), LSHIFT(K_Semicolon), LSHIFT(K_9),
-   ___,                K_1,         K_2,             K_3,         K_4,                 K_5,                   Key_LeftArrow,
+  (K_F1,               K_F2,        K_F3,            K_F4,        K_F5,                K_F6,                  K_LEDEffectNext,
+   K_Backtick,         LSHIFT(K_7), LSHIFT(K_Comma), K_Slash,     K_LeftBracket,       LSHIFT(K_LeftBracket), K_VolumeDown,
+   LSHIFT(K_Backtick), LSHIFT(K_6), LSHIFT(K_3),     LSHIFT(K_5), LSHIFT(K_Semicolon), LSHIFT(K_9),
+   ___,                K_1,         K_2,             K_3,         K_4,                 K_5,                   K_LeftArrow,
 
    ___, ___, ___, ___,
    ShiftToLayer(FUNCTION),
 
-   ___,             ___,                    ___,            ___,              ___,              ___,                 ___,
-   Key_VolumeDown,  LSHIFT(K_RightBracket), K_RightBracket, K_Backslash,      LSHIFT(K_Period), LSHIFT(K_Backslash), LSHIFT(K_2),
-                    LSHIFT(Key_0),          K_Equals,       LSHIFT(K_Equals), LSHIFT(K_8),      LSHIFT(K_4),         LSHIFT(K_Minus),
-   Key_RightArrow,  K_6,                    K_7,            K_8,              K_9,              K_0,                 ___,
+   ___,          K_F7,                   K_F8,           K_F9,             K_F10,            K_F11,               K_F12,
+   K_NextTrack,  LSHIFT(K_RightBracket), K_RightBracket, K_Backslash,      LSHIFT(K_Period), LSHIFT(K_Backslash), LSHIFT(K_2),
+                 LSHIFT(K_0),            K_Equals,       LSHIFT(K_Equals), LSHIFT(K_8),      LSHIFT(K_4),         K_Minus,
+   K_RightArrow, K_6,                    K_7,            K_8,              K_9,              K_0,                 ___,
 
-   ___, Key_Delete, ___, ___,
+   ___, K_Delete, ___, ___,
    ___)
+ 
 );
 // *INDENT-ON*
-
-// Allows us to modify what happens when shift is pressed:
-static const kaleidoscope::ModifierLayers::overlay_t overlays[] = {
-  {LAYER_MODIFIER_KEY(Key_LeftShift) | LAYER_MODIFIER_KEY(Key_RightShift), DVORAK, SHIFTED},
-  {0, 0, 0}
-};
 
 /* ------------------------------------------------------------------------------------------------
  *  Main setup & loop functions
  * ---------------------------------------------------------------------------------------------- */
 
 KALEIDOSCOPE_INIT_PLUGINS(
-  ModifierLayers,
   Macros,
-  MouseKeys,
+  TopsyTurvy,
   BootGreetingEffect,
   LEDControl,
   LEDOff,
@@ -326,8 +405,6 @@ KALEIDOSCOPE_INIT_PLUGINS(
 
 void setup() {
   Kaleidoscope.setup();
-
-  ModifierLayers.overlays = overlays;
   config_and_use_LED_modes();
 }
 
