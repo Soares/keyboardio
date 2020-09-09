@@ -35,6 +35,8 @@
  *  LED Mode configuration
  * ---------------------------------------------------------------------------------------------- */
 
+// TODO: Make the boot greeting purple.
+
 // These 'solid' color effect definitions define a rainbow of
 // LED color modes calibrated to draw 500mA or less on the
 // Keyboardio Model 01.
@@ -60,9 +62,6 @@ void config_and_use_LED_modes() {
 
 enum {
   MACRO_ANY,  // presses a random key when the Any key is pressed
-  /* MACRO_QUOTE,  // Unshiftable single-quote */
-  /* MACRO_COMMA,  // Unshiftable comma */
-  /* MACRO_PERIOD,  // Unshiftable period */
 };
 
 static void anyKeyMacro(uint8_t keyState) {
@@ -79,21 +78,10 @@ static void anyKeyMacro(uint8_t keyState) {
 
 const macro_t *macroAction(uint8_t macroIndex, uint8_t keyState) {
   switch (macroIndex) {
+
     case MACRO_ANY:
       anyKeyMacro(keyState);
       break;
-
-    /* case MACRO_QUOTE: */
-    /*   unshiftable(0x39, keyState); */
-    /*   break; */
-
-    /* case MACRO_COMMA: */
-    /*   unshiftable(0x44, keyState); */
-    /*   break; */
-
-    /* case MACRO_PERIOD: */
-    /*   unshiftable(0x46, keyState); */
-    /*   break; */
 
   }
   return MACRO_NONE;
