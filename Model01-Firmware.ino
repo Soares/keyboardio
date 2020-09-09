@@ -329,9 +329,7 @@ KEYMAPS(
    *                             └───┘           └───┘
    */
   [DVORAK] = KEYMAP_STACKED
-  // Note that remapping PRG is a bad idea, b/c it makes flashing real annoying.
-  // Especially if you remap it to Power.
-  // STOP REMAPPING PRG TO POWER.
+  // Note that remapping PRG to Power a bad idea, b/c it makes flashing real annoying.
   (XXX,              K_Insert,    K_PageUp, K_Home,   K_Mute, XXX, K_LEDEffectNext,
    LSHIFT(K_1),      K_Quote,     K_Comma,  K_Period, K_P,    K_Y, K_VolumeUp,
    LSHIFT(K_Quote),  K_A,         K_O,      K_E,      K_U,    K_I,
