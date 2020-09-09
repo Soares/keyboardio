@@ -219,15 +219,15 @@ KEYMAPS(
   (___,             ___,          ___,      ___,       ___,  ___,  Key_LEDEffectNext,
    LSHIFT(K_1),     K_Quote,      K_Comma,  K_Period,  K_P,  K_Y,  K_PlayPause,
    LSHIFT(K_Quote), K_A,          K_O,      K_E,       K_U,  K_I,
-   Key_LeftAlt,     K_Semicolon,  K_Q,      K_J,       K_K,  K_X,  Key_CapsLock,
+   Key_LeftAlt,     K_Semicolon,  K_Q,      K_J,       K_K,  K_X,  Key_DownArrow,
 
-   Key_RightAlt, Key_LeftControl, Key_LeftShift, Key_LeftGui,
+   Key_RightAlt, Key_CapsLock, Key_LeftShift, Key_LeftGui,
    ShiftToLayer(FUNCTION),
 
-   M(ANY),          ___,  ___,  ___,  ___,  ___,  ___,
-   Key_VolumeUp,    K_F,  K_G,  K_C,  K_R,  K_L,  LSHIFT(K_Slash),
-                    K_D,  K_H,  K_T,  K_N,  K_S,  K_Minus,
-   Key_RightArrow,  K_B,  K_M,  K_W,  K_V,  K_Z,  Key_DownArrow,
+   M(ANY),       ___,  ___,  ___,  ___,  ___,  ___,
+   Key_VolumeUp, K_F,  K_G,  K_C,  K_R,  K_L,  LSHIFT(K_Slash),
+                 K_D,  K_H,  K_T,  K_N,  K_S,  K_Minus,
+   Key_UpArrow,  K_B,  K_M,  K_W,  K_V,  K_Z,  Key_LeftControl,
 
    Key_Tab, Key_Backspace, Key_Spacebar, Key_Escape,
    Key_Enter),
