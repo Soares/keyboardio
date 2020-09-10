@@ -291,8 +291,8 @@ KEYMAPS(
    * ┌───┬───┬───┬───┬───┬───┬───┐                   ┌───┬───┬───┬───┬───┬───┬───┐
    * │Prg│Bri│PgU│Hom│Mut│Ins│LED│                   │Any│Prn│PrT│End│PgD│Dar│Pow│
    * ├───┼───┼───┼───┼───┼───┼───┤                   ├───┼───┼───┼───┼───┼───┼───┤
-   * │ ! │ ' │ , │ . │ p │ y │Vol│                   │Ply│ f │ g │ c │ r │ l │ ? │
-   * ├───┼───┼───┼───┼───┼───┤Up │                   │Pau├───┼───┼───┼───┼───┼───┤
+   * │ ! │ ' │ , │ . │ p │ y │Ply│                   │Vol│ f │ g │ c │ r │ l │ ? │
+   * ├───┼───┼───┼───┼───┼───┤Pau│                   │Up ├───┼───┼───┼───┼───┼───┤
    * │ " │ a │ o │ e │ u │ i ├───┘                   └───┤ d │ h │ t │ n │ s │ - │
    * ├───┼───┼───┼───┼───┼───┼───┐                   ┌───┼───┼───┼───┼───┼───┼───┤
    * │Alt│ ; │ q │ j │ k │ x │ ↓ │                   │ ↑ │ b │ m │ w │ v │ z │Clk│
@@ -305,8 +305,8 @@ KEYMAPS(
    * ┌───┬───┬───┬───┬───┬───┬───┐                   ┌───┬───┬───┬───┬───┬───┬───┐
    * │Prg│Ins│PgU│Hom│Mut│Bri│LED│                   │Any│Dar│Prv│End│PgD│Prn│Pow│
    * ├───┼───┼───┼───┼───┼───┼───┤                   ├───┼───┼───┼───┼───┼───┼───┤
-   * │ ! │ ' │ , │ . │ P │ Y │Vol│                   │Ply│ F │ G │ C │ R │ L │ ? │
-   * ├───┼───┼───┼───┼───┼───┤Up │                   │Pau├───┼───┼───┼───┼───┼───┤
+   * │ ! │ ' │ , │ . │ P │ Y │Ply│                   │Vol│ F │ G │ C │ R │ L │ ? │
+   * ├───┼───┼───┼───┼───┼───┤Pau│                   │Up ├───┼───┼───┼───┼───┼───┤
    * │ " │ A │ O │ E │ U │ I ├───┘                   └───┤ D │ H │ T │ N │ S │ _ │
    * ├───┼───┼───┼───┼───┼───┼───┐                   ┌───┼───┼───┼───┼───┼───┼───┤
    * │Alt│ : │ Q │ J │ K │ X │ ↓ │                   │ ↑ │ B │ M │ W │ V │ Z │Clk│
@@ -319,7 +319,7 @@ KEYMAPS(
   [DVORAK] = KEYMAP_STACKED
   // Note that remapping PRG to Power a bad idea, b/c it makes flashing real annoying.
   (XXX,              XXX,         K_PageUp, K_Home,   K_Mute, K_Insert, K_LEDEffectNext,
-   LSHIFT(K_1),      K_Quote,     K_Comma,  K_Period, K_P,    K_Y,      K_VolumeUp,
+   LSHIFT(K_1),      K_Quote,     K_Comma,  K_Period, K_P,    K_Y,      K_PlayPause,
    LSHIFT(K_Quote),  K_A,         K_O,      K_E,      K_U,    K_I,
    K_LeftAlt,        K_Semicolon, K_Q,      K_J,      K_K,    K_X,      K_DownArrow,
 
@@ -327,7 +327,7 @@ KEYMAPS(
    ShiftToLayer(FUNCTION),
 
    M(MACRO_ANY), K_PrintScreen, K_PrevTrack, K_End, K_PageDown, XXX, K_Power,
-   K_PlayPause,  K_F,           K_G,         K_C,   K_R,        K_L, LSHIFT(K_Slash),
+   K_VolumeUp,   K_F,           K_G,         K_C,   K_R,        K_L, LSHIFT(K_Slash),
                  K_D,           K_H,         K_T,   K_N,        K_S, K_Minus,
    K_UpArrow,    K_B,           K_M,         K_W,   K_V,        K_Z, K_CapsLock,
 
@@ -339,8 +339,8 @@ KEYMAPS(
    * ┌───┬───┬───┬───┬───┬───┬───┐                   ┌───┬───┬───┬───┬───┬───┬───┐
    * │F1 │F2 │F3 │F4 │F5 │F6 │LBk│                   │Any│F7 │F8 │F9 │F10│F11│F12│
    * ├───┼───┼───┼───┼───┼───┼───┤                   ├───┼───┼───┼───┼───┼───┼───┤
-   * │ ` │ & │ < │ / │ [ │ { │Vol│                   │Nxt│ } │ ] │ \ │ > │ | │ @ │
-   * ├───┼───┼───┼───┼───┼───┤Dn │                   │Trk├───┼───┼───┼───┼───┼───┤
+   * │ ` │ & │ < │ / │ [ │ { │Nxt│                   │Vol│ } │ ] │ \ │ > │ | │ @ │
+   * ├───┼───┼───┼───┼───┼───┤Trk│                   │Dn ├───┼───┼───┼───┼───┼───┤
    * │ ~ │ ^ │ # │ % │ : │ ( ├───┘                   └───┤ ) │ = │ + │ * │ $ │ - │
    * ├───┼───┼───┼───┼───┼───┼───┐                   ┌───┼───┼───┼───┼───┼───┼───┤
    * │Alt│ 1 │ 2 │ 3 │ 4 │ 5 │ ← │                   │ → │ 6 │ 7 │ 8 │ 9 │ 0 │Clk│
@@ -352,16 +352,16 @@ KEYMAPS(
    */
   [FUNCTION] =  KEYMAP_STACKED
   (K_F1,               K_F2,        K_F3,            K_F4,        K_F5,                K_F6,                  K_LEDEffectNext,
-   K_Backtick,         LSHIFT(K_7), LSHIFT(K_Comma), K_Slash,     K_LeftBracket,       LSHIFT(K_LeftBracket), K_VolumeDown,
+   K_Backtick,         LSHIFT(K_7), LSHIFT(K_Comma), K_Slash,     K_LeftBracket,       LSHIFT(K_LeftBracket), K_NextTrack,
    LSHIFT(K_Backtick), LSHIFT(K_6), LSHIFT(K_3),     LSHIFT(K_5), LSHIFT(K_Semicolon), LSHIFT(K_9),
    ___,                K_1,         K_2,             K_3,         K_4,                 K_5,                   K_LeftArrow,
 
    ___, ___, ___, ___,
    ShiftToLayer(FUNCTION),
 
-   ___,          K_F7,                   K_F8,           K_F9,             K_F10,            K_F11,               K_F12,
-   K_NextTrack,  LSHIFT(K_RightBracket), K_RightBracket, K_Backslash,      LSHIFT(K_Period), LSHIFT(K_Backslash), LSHIFT(K_2),
-                 LSHIFT(K_0),            K_Equals,       LSHIFT(K_Equals), LSHIFT(K_8),      LSHIFT(K_4),         K_Minus,
+   ___,           K_F7,                   K_F8,           K_F9,             K_F10,            K_F11,               K_F12,
+   K_VolumeDown,  LSHIFT(K_RightBracket), K_RightBracket, K_Backslash,      LSHIFT(K_Period), LSHIFT(K_Backslash), LSHIFT(K_2),
+                  LSHIFT(K_0),            K_Equals,       LSHIFT(K_Equals), LSHIFT(K_8),      LSHIFT(K_4),         K_Minus,
    K_RightArrow, K_6,                    K_7,            K_8,              K_9,              K_0,                 ___,
 
    ___, K_Delete, ___, ___,
