@@ -289,7 +289,7 @@ KEYMAPS(
   /* Dvorak base layer:
    *
    * ┌───┬───┬───┬───┬───┬───┬───┐                   ┌───┬───┬───┬───┬───┬───┬───┐
-   * │Prg│Bri│PgU│Hom│Mut│Ins│LED│                   │Any│Prn│PrT│End│PgD│Dar│Pow│
+   * │Prg│Dar│PgU│Hom│Mut│Ins│LED│                   │Any│Prn│PrT│End│PgD│Bri│Pow│
    * ├───┼───┼───┼───┼───┼───┼───┤                   ├───┼───┼───┼───┼───┼───┼───┤
    * │ ! │ ' │ , │ . │ p │ y │Ply│                   │Vol│ f │ g │ c │ r │ l │ ? │
    * ├───┼───┼───┼───┼───┼───┤Pau│                   │Up ├───┼───┼───┼───┼───┼───┤
@@ -303,7 +303,7 @@ KEYMAPS(
    *                             └───┘           └───┘
    *
    * ┌───┬───┬───┬───┬───┬───┬───┐                   ┌───┬───┬───┬───┬───┬───┬───┐
-   * │Prg│Ins│PgU│Hom│Mut│Bri│LED│                   │Any│Dar│Prv│End│PgD│Prn│Pow│
+   * │Prg│Dar│PgU│Hom│Mut│Ins│LED│                   │Any│Prn│PrT│End│PgD│Bri│Pow│
    * ├───┼───┼───┼───┼───┼───┼───┤                   ├───┼───┼───┼───┼───┼───┼───┤
    * │ ! │ ' │ , │ . │ P │ Y │Ply│                   │Vol│ F │ G │ C │ R │ L │ ? │
    * ├───┼───┼───┼───┼───┼───┤Pau│                   │Up ├───┼───┼───┼───┼───┼───┤
@@ -318,7 +318,7 @@ KEYMAPS(
    */
   [DVORAK] = KEYMAP_STACKED
   // Note that remapping PRG to Power a bad idea, b/c it makes flashing real annoying.
-  (XXX,              K_Brighter,  K_PageUp, K_Home,   K_Mute, K_Insert, K_LEDEffectNext,
+  (XXX,              K_Darker,    K_PageUp, K_Home,   K_Mute, K_Insert, K_LEDEffectNext,
    LSHIFT(K_1),      K_Quote,     K_Comma,  K_Period, K_P,    K_Y,      K_PlayPause,
    LSHIFT(K_Quote),  K_A,         K_O,      K_E,      K_U,    K_I,
    K_LeftAlt,        K_Semicolon, K_Q,      K_J,      K_K,    K_X,      K_DownArrow,
@@ -326,10 +326,10 @@ KEYMAPS(
    K_RightAlt, K_LeftControl, K_LeftShift, K_LeftGui,
    ShiftToLayer(FUNCTION),
 
-   M(MACRO_ANY), K_PrintScreen, K_PrevTrack, K_End, K_PageDown, K_Darker, K_Power,
-   K_VolumeUp,   K_F,           K_G,         K_C,   K_R,        K_L,      LSHIFT(K_Slash),
-                 K_D,           K_H,         K_T,   K_N,        K_S,      K_Minus,
-   K_UpArrow,    K_B,           K_M,         K_W,   K_V,        K_Z,      K_CapsLock,
+   M(MACRO_ANY), K_PrintScreen, K_PrevTrack, K_End, K_PageDown, K_Brighter, K_Power,
+   K_VolumeUp,   K_F,           K_G,         K_C,   K_R,        K_L,        LSHIFT(K_Slash),
+                 K_D,           K_H,         K_T,   K_N,        K_S,        K_Minus,
+   K_UpArrow,    K_B,           K_M,         K_W,   K_V,        K_Z,        K_CapsLock,
 
    K_Tab, K_Backspace, K_Spacebar, K_Escape,
    K_Enter),
