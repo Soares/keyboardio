@@ -341,7 +341,7 @@ KEYMAPS(
    * ├───┼───┼───┼───┼───┼───┼───┤                   ├───┼───┼───┼───┼───┼───┼───┤
    * │ ` │ & │ < │ / │ [ │ { │Nxt│                   │Vol│ } │ ] │ \ │ > │ | │ @ │
    * ├───┼───┼───┼───┼───┼───┤Trk│                   │Dn ├───┼───┼───┼───┼───┼───┤
-   * │ ~ │ ^ │ # │ % │ : │ ( ├───┘                   └───┤ ) │ = │ + │ * │ $ │ - │
+   * │ ~ │ ^ │ # │ % │ : │ ( ├───┘                   └───┤ ) │ = │ + │ * │ $ │ _ │
    * ├───┼───┼───┼───┼───┼───┼───┐                   ┌───┼───┼───┼───┼───┼───┼───┤
    * │Alt│ 1 │ 2 │ 3 │ 4 │ 5 │ ← │                   │ → │ 6 │ 7 │ 8 │ 9 │ 0 │Clk│
    * └───┴───┴───┴───┴───┼───┼───┼───┬───┐   ┌───┬───┼───┼───┼───┴───┴───┴───┴───┘
@@ -361,7 +361,7 @@ KEYMAPS(
 
    ___,           K_F7,                   K_F8,           K_F9,             K_F10,            K_F11,               K_F12,
    K_VolumeDown,  LSHIFT(K_RightBracket), K_RightBracket, K_Backslash,      LSHIFT(K_Period), LSHIFT(K_Backslash), LSHIFT(K_2),
-                  LSHIFT(K_0),            K_Equals,       LSHIFT(K_Equals), LSHIFT(K_8),      LSHIFT(K_4),         K_Minus,
+                  LSHIFT(K_0),            K_Equals,       LSHIFT(K_Equals), LSHIFT(K_8),      LSHIFT(K_4),         LSHIFT(K_Minus),
    K_RightArrow, K_6,                    K_7,            K_8,              K_9,              K_0,                 ___,
 
    ___, K_Delete, ___, ___,
