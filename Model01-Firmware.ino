@@ -339,9 +339,9 @@ KEYMAPS(
    * ┌───┬───┬───┬───┬───┬───┬───┐                   ┌───┬───┬───┬───┬───┬───┬───┐
    * │F1 │F2 │F3 │F4 │F5 │F6 │LBk│                   │Any│F7 │F8 │F9 │F10│F11│F12│
    * ├───┼───┼───┼───┼───┼───┼───┤                   ├───┼───┼───┼───┼───┼───┼───┤
-   * │ ` │ & │ < │ / │ [ │ { │Nxt│                   │Vol│ } │ ] │ \ │ > │ | │ @ │
+   * │ ~ │ & │ < │ / │ [ │ { │Nxt│                   │Vol│ } │ ] │ \ │ > │ | │ @ │
    * ├───┼───┼───┼───┼───┼───┤Trk│                   │Dn ├───┼───┼───┼───┼───┼───┤
-   * │ ~ │ ^ │ # │ % │ : │ ( ├───┘                   └───┤ ) │ = │ + │ * │ $ │ _ │
+   * │ ` │ ^ │ # │ % │ : │ ( ├───┘                   └───┤ ) │ = │ + │ * │ $ │ _ │
    * ├───┼───┼───┼───┼───┼───┼───┐                   ┌───┼───┼───┼───┼───┼───┼───┤
    * │Alt│ 1 │ 2 │ 3 │ 4 │ 5 │ ← │                   │ → │ 6 │ 7 │ 8 │ 9 │ 0 │Clk│
    * └───┴───┴───┴───┴───┼───┼───┼───┬───┐   ┌───┬───┼───┼───┼───┴───┴───┴───┴───┘
@@ -352,8 +352,8 @@ KEYMAPS(
    */
   [FUNCTION] =  KEYMAP_STACKED
   (K_F1,               K_F2,        K_F3,            K_F4,        K_F5,                K_F6,                  K_LEDEffectNext,
-   K_Backtick,         LSHIFT(K_7), LSHIFT(K_Comma), K_Slash,     K_LeftBracket,       LSHIFT(K_LeftBracket), K_NextTrack,
-   LSHIFT(K_Backtick), LSHIFT(K_6), LSHIFT(K_3),     LSHIFT(K_5), LSHIFT(K_Semicolon), LSHIFT(K_9),
+   LSHIFT(K_Backtick), LSHIFT(K_7), LSHIFT(K_Comma), K_Slash,     K_LeftBracket,       LSHIFT(K_LeftBracket), K_NextTrack,
+   K_Backtick,         LSHIFT(K_6), LSHIFT(K_3),     LSHIFT(K_5), LSHIFT(K_Semicolon), LSHIFT(K_9),
    ___,                K_1,         K_2,             K_3,         K_4,                 K_5,                   K_LeftArrow,
 
    ___, ___, ___, ___,
