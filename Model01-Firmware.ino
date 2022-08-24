@@ -297,7 +297,7 @@ KEYMAPS(
    * ├───┼───┼───┼───┼───┼───┼───┐                   ┌───┼───┼───┼───┼───┼───┼───┤
    * │Alt│ ; │ q │ j │ k │ x │ ↓ │                   │ ↑ │ b │ m │ w │ v │ z │Clk│
    * └───┴───┴───┴───┴───┼───┼───┼───┬───┐   ┌───┬───┼───┼───┼───┴───┴───┴───┴───┘
-   *                     │Cmp│Ctl│Shf│Cmd│   │Tab│Bsp│Spc│Esc│
+   *                     │Esc│Ctl│Shf│Cmd│   │Tab│Bsp│Spc│Cmp│
    *                     └───┴───┼───┼───┘   └───┼───┼───┴───┘
    *                             │Fnc│           │Ent│
    *                             └───┘           └───┘
@@ -311,7 +311,7 @@ KEYMAPS(
    * ├───┼───┼───┼───┼───┼───┼───┐                   ┌───┼───┼───┼───┼───┼───┼───┤
    * │Alt│ : │ Q │ J │ K │ X │ ↓ │                   │ ↑ │ B │ M │ W │ V │ Z │Clk│
    * └───┴───┴───┴───┴───┼───┼───┼───┬───┐   ┌───┬───┼───┼───┼───┴───┴───┴───┴───┘
-   *                     │Cmp│Ctl│Shf│Cmd│   │Tab│Bsp│Spc│Esc│
+   *                     │Esc│Ctl│Shf│Cmd│   │Tab│Bsp│Spc│Cmp│
    *                     └───┴───┼───┼───┘   └───┼───┼───┴───┘
    *                             │Fnc│           │Ent│
    *                             └───┘           └───┘
@@ -323,7 +323,7 @@ KEYMAPS(
    LSHIFT(K_Quote),  K_A,         K_O,      K_E,      K_U,    K_I,
    K_LeftAlt,        K_Semicolon, K_Q,      K_J,      K_K,    K_X,      K_DownArrow,
 
-   K_RightAlt, K_LeftControl, K_LeftShift, K_LeftGui,
+   K_Escape, K_LeftControl, K_LeftShift, K_LeftGui,
    ShiftToLayer(FUNCTION),
 
    M(MACRO_ANY), K_PrintScreen, K_PrevTrack, K_End, K_PageDown, K_Brighter, K_Power,
@@ -331,7 +331,7 @@ KEYMAPS(
                  K_D,           K_H,         K_T,   K_N,        K_S,        K_Minus,
    K_UpArrow,    K_B,           K_M,         K_W,   K_V,        K_Z,        K_CapsLock,
 
-   K_Tab, K_Backspace, K_Spacebar, K_Escape,
+   K_Tab, K_Backspace, K_Spacebar, K_RightAlt,
    K_Enter),
 
   /* Function layer:
